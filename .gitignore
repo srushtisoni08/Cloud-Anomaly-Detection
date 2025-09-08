@@ -1,0 +1,23 @@
+venv/
+.env/
+
+# Ignore datasets (huge files)
+*.csv
+*.tsv
+*.xlsx
+*.parquet
+*.zip
+*.tar.gz
+*.h5
+*.npy
+*.npz
+
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore IDE/project settings
+.vscode/
+.idea/
