@@ -40,3 +40,5 @@ build/
 dist/
 *.egg-info/
 .env
+.streamlit/
+
