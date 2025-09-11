@@ -1,7 +1,8 @@
+# Virtual environments
 venv/
 .env/
 
-# Ignore datasets (huge files)
+# Datasets (huge files)
 *.csv
 *.tsv
 *.xlsx
@@ -12,12 +13,28 @@ venv/
 *.npy
 *.npz
 
-# Ignore Python cache
+# Python cache
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
 
-# Ignore IDE/project settings
+# IDE / Editor settings
 .vscode/
 .idea/
+*.swp
+*.swo
+
+# Replit config (not needed for hackathon)
+.replit
+
+# Logs
+*.log
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Build / Dist folders
+build/
+dist/
+*.egg-info/
