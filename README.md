@@ -14,3 +14,7 @@ leveraging PMU (Phasor Measurement Unit) data and waveform datasets.
 ---
 
 Project initialized. Work in progress!
+
+To run file
+streamlit run app.py
+
