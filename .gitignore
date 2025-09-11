@@ -1,6 +1,7 @@
 # Virtual environments
 venv/
 .env/
+.env.*
 
 # Datasets (huge files)
 *.csv
@@ -38,3 +39,4 @@ __pycache__/
 build/
 dist/
 *.egg-info/
+.env
