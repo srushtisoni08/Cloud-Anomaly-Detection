@@ -50,14 +50,59 @@ st.markdown(
     div[data-testid="stSelectbox"] input { background: transparent !important; color: #000000 !important; }
     div[data-baseweb="select"] div { color: #000000 !important; }
 
+    /* Detailed Logs table: match theme (light cyber blue) and black text */
     div[data-testid="stDataFrame"] {
-        background: rgba(10, 22, 51, 0.35) !important;
-        
-        border: 1px solid rgba(75, 155, 224, 0.35) !important;
+        background: #E6F5FF !important; /* light cyber blue */
+        border: 1px solid rgba(75, 155, 224, 0.5) !important;
         border-radius: 8px !important;
         overflow: hidden;
     }
-    div[data-testid="stDataFrame"] * { color: #E6F7FF !important; }
+    div[data-testid="stDataFrame"] * { color: #000000 !important; }
+    div[data-testid="stDataFrame"] td { color: #000000 !important; }
+    div[data-testid="stDataFrame"] th { background: #D2ECFF !important; color: #000000 !important; }
+    div[data-testid="stDataFrame"] thead th { color: #000000 !important; }
+    div[data-testid="stDataFrame"] tbody th { color: #000000 !important; }
+
+    /* Export button (download) */
+    div[data-testid="stDownloadButton"] > button {
+        background-color: #4B9BE0 !important; /* set your desired color */
+        color: #FFFFFF !important;            /* text color */
+        border: none !important;
+    }
+    div[data-testid="stDownloadButton"] > button:hover {
+        background-color: #3C89CC !important; /* hover color */
+        color: #FFFFFF !important;
+    }
+    
+    /* Main content buttons: set text color to black (keeps sidebar unchanged) */
+    div[data-testid="stVerticalBlock"] .stButton > button { color: #000000 !important; }
+
+    /* Main content buttons: theme-matched background (exclude sidebar) */
+    .block-container .stButton > button {
+        background-color: #E6F5FF !important; /* light cyber blue */
+        border: 1px solid rgba(75, 155, 224, 0.5) !important;
+        color: #000000 !important;
+    }
+    .block-container .stButton > button:hover {
+        background-color: #D2ECFF !important;
+        border-color: rgba(75, 155, 224, 0.7) !important;
+        color: #000000 !important;
+    }
+    .block-container .stButton > button:disabled {
+        background-color: #EAF6FF !important;
+        color: #666666 !important;
+        opacity: 0.9 !important;
+    }
+
+    /* Force dropdown menu options text to black */
+    div[role="listbox"], ul[role="listbox"] { color: #000000 !important; }
+    div[role="listbox"] *, ul[role="listbox"] * { color: #000000 !important; }
+    div[role="option"], li[role="option"] { color: #000000 !important; }
+    div[role="option"] > div, li[role="option"] > div, div[role="option"] span, li[role="option"] span { color: #000000 !important; }
+    /* Keep selected/hover backgrounds subtle light blue */
+    div[role="option"][aria-selected="true"], li[role="option"][aria-selected="true"] { background: rgba(200,225,245,0.95) !important; }
+    div[role="option"]:hover, li[role="option"]:hover { background: rgba(210,235,250,0.95) !important; }
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -297,15 +342,30 @@ def main():
         colA, colB, colC = st.columns(3)
         with colA:
             fig_dev = px.pie(values=device_counts.values, names=device_counts.index, title="Devices")
-            fig_dev.update_layout(title_font=dict(color="#FFFFFF"), paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+            fig_dev.update_layout(
+                title_font=dict(color="#FFFFFF"),
+                legend=dict(font=dict(color="#FFFFFF")),
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)'
+            )
             st.plotly_chart(fig_dev, use_container_width=True)
         with colB:
             fig_bro = px.pie(values=browser_counts.values, names=browser_counts.index, title="Browsers")
-            fig_bro.update_layout(title_font=dict(color="#FFFFFF"), paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+            fig_bro.update_layout(
+                title_font=dict(color="#FFFFFF"),
+                legend=dict(font=dict(color="#FFFFFF")),
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)'
+            )
             st.plotly_chart(fig_bro, use_container_width=True)
         with colC:
             fig_os = px.pie(values=os_counts.values, names=os_counts.index, title="Operating Systems")
-            fig_os.update_layout(title_font=dict(color="#FFFFFF"), paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
+            fig_os.update_layout(
+                title_font=dict(color="#FFFFFF"),
+                legend=dict(font=dict(color="#FFFFFF")),
+                paper_bgcolor='rgba(0,0,0,0)',
+                plot_bgcolor='rgba(0,0,0,0)'
+            )
             st.plotly_chart(fig_os, use_container_width=True)
     
     with tab4:
@@ -351,7 +411,7 @@ def main():
             display_columns.append('risk_score')
         
         st.dataframe(
-            filtered_data[display_columns].sort_values('timestamp', ascending=False),
+            filtered_data[display_columns].sort_values('timestamp', ascending=False).style.set_properties(**{'color': 'black'}),
             use_container_width=True,
             height=400
         )
