@@ -47,4 +47,4 @@ The repository contains the following key files:
 To run the anomaly detection system:
 
 ```bash
-streamlit run app.py --server.port 8501
+streamlit run app.py 
